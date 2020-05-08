@@ -77,7 +77,7 @@ void MainWindow::on_solve_task_clicked()
 {
     ui->output->clear();
     Stack<HashNode<QString>*>* temp = new Stack<HashNode<QString>*>();
-    int stnumber;
+    int stnumber = 0;
     int value = 0;
     for(int i=0; i < hashmap->GetSize(); i++){
         hashmap->GetMap()[i].copy(temp);
