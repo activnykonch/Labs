@@ -39,6 +39,7 @@ Stack<T>::Stack()
 template<typename T>
 Stack<T>::~Stack()
 {
+    while(size) this->pop();
 }
 
 template<typename T>
