@@ -79,17 +79,20 @@ void MainWindow::on_solve_task_clicked()
     Stack<HashNode<QString>*>* temp = new Stack<HashNode<QString>*>();
     int stnumber = 0;
     int value = 0;
+    bool empty = true;
     for(int i=0; i < hashmap->GetSize(); i++){
         hashmap->GetMap()[i].copy(temp);
         while(temp->getSize()){
             if(temp->peek()->key > value){
                 value = temp->peek()->key;
                 stnumber = i;
+                empty = false;
             }
             temp->pop();
         }
     }
-    ui->output->setText("The largest key has stack number " + QString::number(stnumber) + " with the value " + QString::number(value));
+    if(!empty) ui->output->setText("The largest key has stack number " + QString::number(stnumber) + " with the value " + QString::number(value));
+    else QMessageBox::warning(this, "Error", "Add some elements");
     delete temp;
 }
 
