@@ -20,6 +20,10 @@ bool isDigit(QChar a){
     return ((a>='0' && a<='9') || a=='.');
 }
 
+bool isVariable(QChar q){
+    return (q>='a' && q<='z');
+}
+
 int priority(QChar a){
     if(a=='(') return 1;
     else if(a=='+' || a=='-') return 2;
@@ -30,7 +34,7 @@ int priority(QChar a){
 void MainWindow::convert(){
     QString str;
     str=ui->lineEdit->text();
-    if((!isDigit(str[0])) && str[0]!='('){
+    if((!isDigit(str[0])) && str[0]!='(' && !isVariable(str[0].toLower())){
         QMessageBox::warning(this, "Error", "Syntax error");
         toConvert=false;
     }
@@ -42,6 +46,53 @@ void MainWindow::convert(){
             if(str[i].isSpace()) continue;
             if(isDigit(str[i])) {
                 out += str[i];
+                continue;
+            }
+            else if(isVariable(str[i].toLower())){
+                if(str[i].toLower() == 'a'){
+                    if(ui->a_field->text().isEmpty()){
+                        QMessageBox::warning(this, "Error", "No value for variable A");
+                        toConvert = false;
+                        break;
+                    }
+                    else out += ui->a_field->text();
+                } else
+                if(str[i].toLower() == 'b'){
+                    if(ui->b_field->text().isEmpty()){
+                        QMessageBox::warning(this, "Error", "No value for variable B");
+                        toConvert = false;
+                        break;
+                    }
+                    else out += ui->b_field->text();
+                } else
+                if(str[i].toLower() == 'c'){
+                    if(ui->c_field->text().isEmpty()){
+                        QMessageBox::warning(this, "Error", "No value for variable C");
+                        toConvert = false;
+                        break;
+                    }
+                    else out += ui->c_field->text();
+                } else
+                if(str[i].toLower() == 'd'){
+                    if(ui->d_field->text().isEmpty()){
+                        QMessageBox::warning(this, "Error", "No value for variable D");
+                        toConvert = false;
+                        break;
+                    }
+                    else out += ui->d_field->text();
+                } else
+                if(str[i].toLower() == 'e'){
+                    if(ui->e_field->text().isEmpty()){
+                        QMessageBox::warning(this, "Error", "No value for variable E");
+                        toConvert = false;
+                        break;
+                    }
+                    else out += ui->e_field->text();
+                } else{
+                    QMessageBox::warning(this, "Error", "Usage of not allowed variable " + str[i]);
+                    toConvert = false;
+                    break;
+                }
                 continue;
             }
             else{
@@ -290,4 +341,48 @@ void MainWindow::on_button_delete_clicked()
     QString str =ui->lineEdit->text();
     str.chop(1);
     ui->lineEdit->setText(str);
+}
+
+void MainWindow::on_a_button_clicked()
+{
+    QString str =ui->lineEdit->text();
+    str+="a";
+    ui->lineEdit->setText(str);
+}
+
+void MainWindow::on_b_button_clicked()
+{
+    QString str =ui->lineEdit->text();
+    str+="b";
+    ui->lineEdit->setText(str);
+}
+
+void MainWindow::on_c_button_clicked()
+{
+    QString str =ui->lineEdit->text();
+    str+="c";
+    ui->lineEdit->setText(str);
+}
+
+void MainWindow::on_d_button_clicked()
+{
+    QString str =ui->lineEdit->text();
+    str+="d";
+    ui->lineEdit->setText(str);
+}
+
+void MainWindow::on_e_button_clicked()
+{
+    QString str =ui->lineEdit->text();
+    str+="e";
+    ui->lineEdit->setText(str);
+}
+
+void MainWindow::on_clear_vars_clicked()
+{
+    ui->a_field->clear();
+    ui->b_field->clear();
+    ui->c_field->clear();
+    ui->d_field->clear();
+    ui->e_field->clear();
 }
