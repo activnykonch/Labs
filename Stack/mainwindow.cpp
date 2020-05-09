@@ -52,47 +52,53 @@ void MainWindow::convert(){
                 if(str[i].toLower() == 'a'){
                     if(ui->a_field->text().isEmpty()){
                         QMessageBox::warning(this, "Error", "No value for variable A");
+                        out=ui->lineEdit->text();
                         toConvert = false;
                         break;
                     }
                     else out += ui->a_field->text();
                 } else
-                if(str[i].toLower() == 'b'){
-                    if(ui->b_field->text().isEmpty()){
-                        QMessageBox::warning(this, "Error", "No value for variable B");
-                        toConvert = false;
-                        break;
-                    }
-                    else out += ui->b_field->text();
-                } else
-                if(str[i].toLower() == 'c'){
-                    if(ui->c_field->text().isEmpty()){
-                        QMessageBox::warning(this, "Error", "No value for variable C");
-                        toConvert = false;
-                        break;
-                    }
-                    else out += ui->c_field->text();
-                } else
-                if(str[i].toLower() == 'd'){
-                    if(ui->d_field->text().isEmpty()){
-                        QMessageBox::warning(this, "Error", "No value for variable D");
-                        toConvert = false;
-                        break;
-                    }
-                    else out += ui->d_field->text();
-                } else
-                if(str[i].toLower() == 'e'){
-                    if(ui->e_field->text().isEmpty()){
-                        QMessageBox::warning(this, "Error", "No value for variable E");
-                        toConvert = false;
-                        break;
-                    }
-                    else out += ui->e_field->text();
-                } else{
-                    QMessageBox::warning(this, "Error", "Usage of not allowed variable " + str[i]);
-                    toConvert = false;
-                    break;
-                }
+                    if(str[i].toLower() == 'b'){
+                        if(ui->b_field->text().isEmpty()){
+                            QMessageBox::warning(this, "Error", "No value for variable B");
+                            out=ui->lineEdit->text();
+                            toConvert = false;
+                            break;
+                        }
+                        else out += ui->b_field->text();
+                    } else
+                        if(str[i].toLower() == 'c'){
+                            if(ui->c_field->text().isEmpty()){
+                                QMessageBox::warning(this, "Error", "No value for variable C");
+                                out=ui->lineEdit->text();
+                                toConvert = false;
+                                break;
+                            }
+                            else out += ui->c_field->text();
+                        } else
+                            if(str[i].toLower() == 'd'){
+                                if(ui->d_field->text().isEmpty()){
+                                    QMessageBox::warning(this, "Error", "No value for variable D");
+                                    out=ui->lineEdit->text();
+                                    toConvert = false;
+                                    break;
+                                }
+                                else out += ui->d_field->text();
+                            } else
+                                if(str[i].toLower() == 'e'){
+                                    if(ui->e_field->text().isEmpty()){
+                                        QMessageBox::warning(this, "Error", "No value for variable E");
+                                        out=ui->lineEdit->text();
+                                        toConvert = false;
+                                        break;
+                                    }
+                                    else out += ui->e_field->text();
+                                } else{
+                                    QMessageBox::warning(this, "Error", "Usage of not allowed variable " + str[i]);
+                                    out=ui->lineEdit->text();
+                                    toConvert = false;
+                                    break;
+                                }
                 continue;
             }
             else{
@@ -142,11 +148,12 @@ void MainWindow::convert(){
                 }
             }
         }
-    while(st.getSize()!=0){
-        out+=" ";
-        out+=st.peek();
-        st.pop();
-    }
+    if(toConvert)
+        while(st.getSize()!=0){
+            out+=" ";
+            out+=st.peek();
+            st.pop();
+        }
     if(brackets){
         QMessageBox::warning(this, "Error", "Wrong number of brackets");
         out=ui->lineEdit->text();
