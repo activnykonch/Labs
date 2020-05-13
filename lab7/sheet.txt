@@ -1,0 +1,14 @@
+List of students got grants:
+
+Samoilov Ivan Andreevich budget 7.25 94.634 rubbles
+Kuzmenko Natalya Igorevna budget 9.50 126.179 rubbles
+Ivanov Vladislav Olegovich budget 5.50 78.862 rubbles
+Ponyakov Denis Sergeevich budget 6.30 94.634 rubbles
+
+List of students got raised grants:
+
+Samoilov Ivan Andreevich budget 7.25 94.634 rubbles
+Kuzmenko Natalya Igorevna budget 9.50 126.179 rubbles
+Ponyakov Denis Sergeevich budget 6.30 94.634 rubbles
+
+Totally paid 394.309 rubbles
